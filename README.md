@@ -180,7 +180,7 @@ You can add screenshots like:
 **Your Name**
 B.Tech Student | MERN Stack Developer
 
-* LinkedIn: [https://linkedin.com/in/your-profile](https://www.linkedin.com/in/-vivek-garg/)
+* LinkedIn: [https://www.linkedin.com/in/-vivek-garg/](https://www.linkedin.com/in/-vivek-garg/)
 
 ---
 

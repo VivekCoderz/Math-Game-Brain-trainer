@@ -93,27 +93,27 @@ mern-bubble-game/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/mern-bubble-game.git
-cd mern-bubble-game
+git clone https://github.com/VivekCoderz/Math-Game-Brain-trainer.git
+cd Math-Game-Brain-trainer
 ```
 
 ### 2. Install backend dependencies
 
 ```bash
-cd server
+cd backend
 npm install
 ```
 
 ### 3. Install frontend dependencies
 
 ```bash
-cd ../client
+cd ../frontend
 npm install
 ```
 
 ### 4. Setup environment variables
 
-Create a `.env` file inside `server/` and add:
+Create a `.env` file inside `backend/` and add:
 
 ```
 MONGO_URI=your_mongodb_connection_string
@@ -126,14 +126,14 @@ PORT=5000
 Run backend:
 
 ```bash
-cd server
+cd backend
 npm run dev
 ```
 
 Run frontend:
 
 ```bash
-cd client
+cd frontend
 npm start
 ```
 

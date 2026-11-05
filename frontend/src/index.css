@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+  *{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* .boble{
+    animation: fall 5s linear forwards;
+  }
+
+@keyframes fall{
+  from  {
+    top: 0px
+  }
+  to  {
+    top : 100%
+  }
+} */

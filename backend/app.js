@@ -27,6 +27,7 @@ app.post("/user/signup", async (req, res) => {
   const password = String(req.body.pass || "");
 
   if (!name) return res.status(400).json({ message: "Please enter your name" });
+  if (name.length > 40) return res.status(400).json({ message: "Name must be 40 characters or less" });
   if (!EMAIL_RE.test(email)) return res.status(400).json({ message: "Please enter a valid email" });
   if (password.length < 6) return res.status(400).json({ message: "Password must be at least 6 characters" });
 
@@ -79,7 +80,7 @@ app.post("/scores", auth, async (req, res) => {
   const score = Number(req.body.score);
   const solved = Number(req.body.solved) || 0;
   // Each correct answer is worth at most 100 points (see the game), so reject impossible scores.
-  if (!Number.isInteger(score) || score < 0 || score > solved * 100 || solved > 2000) {
+  if (!Number.isInteger(score) || score < 0 || !Number.isInteger(solved) || solved < 0 || score > solved * 100 || solved > 2000) {
     return res.status(400).json({ message: "Invalid score" });
   }
   try {
@@ -101,8 +102,9 @@ app.get("/scores/leaderboard", async (req, res) => {
     const rows = await Score.aggregate([
       { $match: match },
       { $sort: { score: -1, createdAt: 1 } },
-      { $group: { _id: "$user", score: { $first: "$score" } } },
-      { $sort: { score: -1 } },
+      { $group: { _id: "$user", score: { $first: "$score" }, at: { $first: "$createdAt" } } },
+      // Ties: whoever reached the score first ranks higher (stable order between requests).
+      { $sort: { score: -1, at: 1, _id: 1 } },
       { $limit: 10 },
       { $lookup: { from: "users", localField: "_id", foreignField: "_id", as: "u" } },
       { $unwind: "$u" },

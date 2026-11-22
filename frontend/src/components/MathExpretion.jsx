@@ -79,9 +79,11 @@ function MathExpretion() {
     };
   }, [over]);
 
+  // The input is re-mounted (key={shake}) to replay the shake animation on a wrong answer,
+  // so focus it again after every shake as well, otherwise typing stops working.
   useEffect(() => {
     if (!paused && !over) inputRef.current?.focus();
-  }, [paused, over]);
+  }, [paused, over, shake]);
 
   /* ── save the score once when the game ends ────────── */
   useEffect(() => {
